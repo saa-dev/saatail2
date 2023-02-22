@@ -1,7 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const path = require("path");
+
+module.exports = {
   reactStrictMode: true,
   swcMinify: true,
-}
-
-module.exports = nextConfig
+  webpack: (config) => {
+    config.resolve.alias["@"] = path.resolve(__dirname, "./src");
+    return config;
+  },
+  env: {
+    AUTOCOMPLETE_PATH: path.join(__dirname, "src/components"),
+  },
+};
