@@ -1,10 +1,10 @@
-// components/PDFViewer.js
-import { useState } from "react";
-import { pdfjs, Document, Page } from "react-pdf";
+import { Document, Page } from "react-pdf";
+import React, { useState } from "react";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+export default function PDFViewer(props) {
+  console.log(props); // check if props is passed correctly
+  console.log(props.file); // check the value of the file prop
 
-export default function PDFViewer({ file }) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -15,7 +15,7 @@ export default function PDFViewer({ file }) {
 
   return (
     <div>
-      <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file={props.file} onLoadSuccess={onDocumentLoadSuccess}>
         <Page pageNumber={pageNumber} />
       </Document>
       <p>
