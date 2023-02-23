@@ -3,8 +3,7 @@ import { pdfjs, Document, Page } from "react-pdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export default function PDFViewer(props) {
-  const { url } = props;
+export default function PDFViewer({ filename }) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -14,9 +13,12 @@ export default function PDFViewer(props) {
   }
 
   return (
-    <>
-      <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} />
+    <div>
+      <Document
+        file={`/pdf/${filename}.pdf`}
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
+        <Page pageNumber={pageNumber} renderAnnotationLayer={false} />
       </Document>
       <p>
         Page {pageNumber} of {numPages}
@@ -35,6 +37,6 @@ export default function PDFViewer(props) {
           Next
         </button>
       </nav>
-    </>
+    </div>
   );
 }

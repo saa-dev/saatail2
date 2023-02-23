@@ -1,11 +1,15 @@
-import React from "react";
-import PDFViewer from "../components/PDFViewer";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div>
-      <h1>Welcome to Saatail</h1>
-      <PDFViewer url="/pdf/document1.pdf" />
+      <Link href="/pdfviewer?filename=document1">
+        <div>View Document 1</div>
+      </Link>
+      <br />
+      <Link href="/pdfviewer?filename=document2">
+        <div>View Document 2</div>
+      </Link>
     </div>
   );
 }
